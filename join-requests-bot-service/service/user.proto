@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package user_service.service;
+
+service ApplicationService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserByUserID(GetUserByUserIDRequest) returns (GetUserByUserIDResponse);
+  rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse);
+  rpc GetUsersByChatID(GetUsersByChatIDRequest) returns (GetUsersByChatIDResponse);
+}
+
+message CreateUserRequest{
+  model.v1.User users = 1;
+}
+
+message CreateUserResponse{
+  bool success = 1;
+}
+
+message GetUserByUserIDRequest {
+  int64 user_id = 1;
+}
+
+message GetUserByUserIDResponse {
+  model.User user = 1;
+}
+
+message GetUserByUsernameRequest {
+  string username = 1; 
+}
+
+message GetUserByUsernameResponse {
+  model.User user = 1;
+}
+
+message GetUsersByChatIDRequest {
+  int64 chat_id = 1;
+}
+
+message GetUsersByChatIDResponse {
+  repeated model.v1.User users = 1;
+}
+
+message UpdateUserRequest {
+  int64 user_id = 1;
+  optional int64 chat_id = 2;
+  optional int64 user_id = 3;
+  optional string username = 4;
+}
+
+message UpdateUserResponse {
+  bool success = 1;
+}
+
